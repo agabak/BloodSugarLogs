@@ -1,1 +1,42 @@
-﻿<h1>Register</h1>
+﻿@model RegisterCommandModel
+<div class="container">
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="alert-danger"> </div>
+    <div class="col-md-6 col-md-offset-4">
+        <h1>Register</h1>
+        <form asp-action="Register" asp-controller="Account">
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" type="password" />
+                <span asp-validation-for="ConfirmPassword" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="alert-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailConfirm"></label>
+                <input asp-for="EmailConfirm" class="form-control" />
+                <span asp-validation-for="EmailConfirm" class="alert-danger"></span>
+            </div>
+            <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Cancel >></a>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
