@@ -19,6 +19,14 @@ namespace BloodSugarLog
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                 .ConfigureAppConfiguration(AppConfigureSetting)
                 .UseStartup<Startup>();
+
+        private static void AppConfigureSetting(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        {
+            // clean up the config
+            builder.Sources.Clear();
+            builder.AddJsonFile("appConfig.json").AddEnvironmentVariables();
+        }
     }
 }

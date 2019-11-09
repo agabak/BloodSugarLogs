@@ -7,7 +7,7 @@ namespace BloodSugarLog.Entities
 {
     public class FoodInTake
     {
-        public int FoodId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

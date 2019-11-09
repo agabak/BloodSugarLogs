@@ -7,7 +7,8 @@ namespace BloodSugarLog.Entities
 {
     public class BloodSugarMeasurement
     {
-        public int BloodSugarId { get; set; }
+
+        public int Id { get; set; }
         public int MeasurementValue { get; set; }
     }
 }
