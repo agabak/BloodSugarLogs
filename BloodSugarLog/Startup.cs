@@ -38,10 +38,18 @@ namespace BloodSugarLog
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseAuthentication();
+            //   app.UseAuthorization();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
+            app.UseMvc(routes =>
+            {     
+                routes.MapRoute(
+               "Default",                                              // Route name
+               "{controller}/{action}/{id?}",                      // URL with parameters
+               new { controller = "Account", action = "Register", id = ""});
+              
             });
         }
     }
