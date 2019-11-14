@@ -1,0 +1,28 @@
+﻿@model LoginCommandModel
+<div class="container">
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="alert-danger"> </div>
+    <div class="col-md-6 col-md-offset-4">
+        <h1>Login</h1>
+        <form asp-action="Login" asp-controller="Account">
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="alert-danger"></span>
+            </div>
+            <div class="form-group-sm">
+                <div class="form-check">
+                    <input asp-for="RememberMe" class="form-control checkbox" type="password" />
+                    <label asp-for="RememberMe"></label>
+                </div>
+            </div>        
+            <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Cancel >></a>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>

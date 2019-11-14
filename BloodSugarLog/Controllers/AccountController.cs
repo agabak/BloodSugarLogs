@@ -1,5 +1,6 @@
 ﻿using BloodSugarLog.Entities;
 using BloodSugarLog.Models;
+using BloodSugarLog.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,14 +12,11 @@ namespace BloodSugarLog.Controllers
 {
     public class AccountController: Controller
     {
-        private readonly UserManager<ApplicationUser> _userManger;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        public AccountController(UserManager<ApplicationUser> userManger, 
-                                 SignInManager<ApplicationUser> signInManager)
+        private readonly IBloodSugarLogService _service;
+       
+        public AccountController(IBloodSugarLogService service)
         {
-            _userManger = userManger;
-            _signInManager = signInManager;
+            _service = service;
 
         }
 
@@ -32,24 +30,32 @@ namespace BloodSugarLog.Controllers
         public async Task<IActionResult>  Register(RegisterCommandModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            var storeUser = new ApplicationUser
-                            {
-                                FirstName = model.FirstName,
-                                LastName = model.LastName,
-                                Email = model.Email,
-                                UserName = model.Email
-                            };
-            var isCreated = await _userManger.CreateAsync(storeUser, model.Password);
 
-            if (isCreated.Succeeded)
+            var isRegistered = await _service.Register(model);
+            if(isRegistered)
             {
-                await _signInManager.SignInAsync(storeUser, false, null);
-                return RedirectToAction("Register", "Account");
+                return RedirectToAction("Index", "Home");
             }
+            
             ModelState.TryAddModelError("", "Fail to register"); 
             return View(model);
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+               await  _service.Logout();
+            }
+
+            return RedirectToAction("index", "Home");
+        }
 
     }
 }

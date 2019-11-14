@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BloodSugarLog.DL;
 using BloodSugarLog.Entities;
+using BloodSugarLog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,7 +27,15 @@ namespace BloodSugarLog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BloodSugarDbContext>(apt => apt.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<BloodSugarDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(option =>
+            {
+                option.User.RequireUniqueEmail = true;
+            }
+                
+                
+                ).AddEntityFrameworkStores<BloodSugarDbContext>();
+
+            services.AddScoped<IBloodSugarLogService, BloodSugarLogService>();
 
             services.AddMvc();
         }
