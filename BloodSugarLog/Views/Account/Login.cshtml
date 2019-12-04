@@ -15,14 +15,14 @@
                 <input asp-for="Password" class="form-control" type="password" />
                 <span asp-validation-for="Password" class="alert-danger"></span>
             </div>
-            <div class="form-group-sm">
+            <div class="form-group">
                 <div class="form-check">
-                    <input asp-for="RememberMe" class="form-control checkbox" type="password" />
-                    <label asp-for="RememberMe"></label>
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
                 </div>
-            </div>        
-            <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Cancel >></a>
-            <button type="submit" class="btn btn-success">Save</button>
+            </div>
+            <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Cancel </a>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
 </div>

@@ -50,14 +50,14 @@ namespace BloodSugarLog
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
-            //   app.UseAuthorization();
+          //  app.UseAuthorization();
 
             app.UseMvc(routes =>
             {     
                 routes.MapRoute(
                "Default",                                              // Route name
                "{controller}/{action}/{id?}",                      // URL with parameters
-               new { controller = "Account", action = "Register", id = ""});
+               new { controller = "Account", action = "Login", id = ""});
               
             });
         }

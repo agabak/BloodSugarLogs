@@ -1,11 +1,6 @@
-﻿using BloodSugarLog.Entities;
-using BloodSugarLog.Models;
+﻿using BloodSugarLog.Models;
 using BloodSugarLog.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BloodSugarLog.Controllers
@@ -17,7 +12,6 @@ namespace BloodSugarLog.Controllers
         public AccountController(IBloodSugarLogService service)
         {
             _service = service;
-
         }
 
 
@@ -46,16 +40,24 @@ namespace BloodSugarLog.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginCommandModel model)
+        {
+            if(ModelState.IsValid)
+            {
+               if(await _service.Login(model))  return RedirectToAction("Index","Home");
+            }
+            ModelState.AddModelError("", "Fail to login");
+            return View();
+        }
 
         public async Task<IActionResult> Logout()
         {
             if(User.Identity.IsAuthenticated)
             {
-               await  _service.Logout();
+               await  _service.Logout();    
             }
-
-            return RedirectToAction("index", "Home");
+            return RedirectToAction("Login", "Account");
         }
-
     }
 }

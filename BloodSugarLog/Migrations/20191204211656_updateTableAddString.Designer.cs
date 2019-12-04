@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodSugarLog.Migrations
 {
     [DbContext(typeof(BloodSugarDbContext))]
-    [Migration("20191109182502_InitialTableCreation")]
-    partial class InitialTableCreation
+    [Migration("20191204211656_updateTableAddString")]
+    partial class updateTableAddString
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,7 +84,9 @@ namespace BloodSugarLog.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int>("MeasurementValue");
+                    b.Property<string>("MeasurementValue");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -102,6 +104,8 @@ namespace BloodSugarLog.Migrations
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("userId");
 
                     b.HasKey("Id");
 
@@ -132,9 +136,11 @@ namespace BloodSugarLog.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -152,9 +158,11 @@ namespace BloodSugarLog.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider");
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value");
 

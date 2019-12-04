@@ -1,0 +1,23 @@
+﻿@model CreateCommandModel
+<div class="container">
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="alert-danger"> </div>
+    <div class="col-md-6 col-md-offset-4">
+        <h1>Food In Take</h1>
+        <form asp-action="Create" asp-controller="BloodSugar">
+            <div class="form-group">
+                <label asp-for="FoodName"></label>
+                <input asp-for="FoodName" class="form-control" />
+                <span asp-validation-for="FoodName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BloodValue"></label>
+                <input asp-for="BloodValue" class="form-control" />
+                <span asp-validation-for="BloodValue" class="alert-danger"></span>
+            </div>
+            <a class="btn btn-primary" asp-action="Register" asp-controller="Account">Cancel >></a>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+
