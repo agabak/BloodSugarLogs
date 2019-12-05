@@ -50,7 +50,7 @@ namespace BloodSugarLog.Test.Controllers
         public async Task Create_ModelStateValide_CreateCallOnce()
         {
           
-             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100, Name ="testing@gmail.com"};
+             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100};
 
             _servicMock.Setup(c => c.Create(createFood)).ReturnsAsync(true);
 
@@ -63,9 +63,9 @@ namespace BloodSugarLog.Test.Controllers
         public async Task Create_ModelStateValide_CreateRedirectToIndexActionResult()
         {
           
-             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100, Name ="testing@gmail.com"};
+             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100 };
 
-            _servicMock.Setup(c => c.Create(createFood)).ReturnsAsync(true);
+                 _servicMock.Setup(c => c.Create(createFood)).ReturnsAsync(true);
 
              var result = await _controller.Create(createFood);
              var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
