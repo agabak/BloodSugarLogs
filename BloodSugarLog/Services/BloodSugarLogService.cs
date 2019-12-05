@@ -1,12 +1,12 @@
-﻿using System;
+﻿using BloodSugarLog.DL;
+using BloodSugarLog.Entities;
+using BloodSugarLog.Models;
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using BloodSugarLog.DL;
-using BloodSugarLog.Entities;
-using BloodSugarLog.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace BloodSugarLog.Services
 {

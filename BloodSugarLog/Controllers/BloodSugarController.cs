@@ -1,5 +1,4 @@
-﻿using BloodSugarLog.DL;
-using BloodSugarLog.Models;
+﻿using BloodSugarLog.Models;
 using BloodSugarLog.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

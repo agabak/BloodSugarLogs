@@ -3,11 +3,9 @@ using BloodSugarLog.Entities;
 using BloodSugarLog.Models;
 using BloodSugarLog.Services;
 using BloodSugarLog.Test.Mock.Class;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
