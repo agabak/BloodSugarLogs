@@ -77,7 +77,7 @@ namespace BloodSugarLog.Test.Services
                                         UserName = "agaba@test.com",
                                         Id = "1234yy"
                                     });
-                var result = await service.Create(new CreateCommandModel {FoodName = "Pilau", BloodValue = 123 }, "agaba@test.com");
+                var result = await service.Create(new CreateCommandModel {FoodName = "Pilau", BloodValue = 123, Name ="agaba@test.com" });
                
                 Assert.True(result);
             }
@@ -92,7 +92,7 @@ namespace BloodSugarLog.Test.Services
             {
                 var service = new BloodSugarLogService(_userManagerMock.Object, _signInManagerMock.Object,  context);
                 // No user in the database
-                var result = await service.Create(new CreateCommandModel {BloodValue = 123 }, "agaba@test.com");
+                var result = await service.Create(new CreateCommandModel {BloodValue = 123 });
                
                 Assert.False(result);
             }

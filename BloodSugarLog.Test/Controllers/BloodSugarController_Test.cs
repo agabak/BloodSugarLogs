@@ -38,11 +38,51 @@ namespace BloodSugarLog.Test.Controllers
                 }));
         }
 
+        
         [Fact]
         public void List_ActionExecutes_ReturnsViewForIndex()
         {
             var result = _controller.Create();
             Assert.IsType<ViewResult>(result);
         }
+
+        [Fact]
+        public async Task Create_ModelStateValide_CreateCallOnce()
+        {
+          
+             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100, Name ="testing@gmail.com"};
+
+            _servicMock.Setup(c => c.Create(createFood)).ReturnsAsync(true);
+
+             var result = await _controller.Create(createFood);
+            _servicMock.Verify(x => x.Create(It.IsAny<CreateCommandModel>()), Times.Once);
+
+        }
+
+        [Fact]
+        public async Task Create_ModelStateValide_CreateRedirectToIndexActionResult()
+        {
+          
+             var createFood = new CreateCommandModel{ FoodName = "Pizza", BloodValue = 100, Name ="testing@gmail.com"};
+
+            _servicMock.Setup(c => c.Create(createFood)).ReturnsAsync(true);
+
+             var result = await _controller.Create(createFood);
+             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
+
+            Assert.Equal("Index", redirectToActionResult.ActionName);
+
+        }
+
+       [Fact]
+        public async Task Create_InvalidModelState_CreatePersonAccomplishmentNeverExecutes()
+        {
+            _controller.ModelState.AddModelError("FoodName", "Name is required");
+
+            var personAccomplishment = new CreateCommandModel { BloodValue = 123 };
+            await _controller.Create(personAccomplishment);
+            _servicMock.Verify(x => x.Create(It.IsAny<CreateCommandModel>()), Times.Never);
+        }
+
     }
 }

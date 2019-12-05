@@ -11,7 +11,7 @@ namespace BloodSugarLog.Services
         Task<bool> Register(RegisterCommandModel model);
         Task<bool> Login(LoginCommandModel model);
         Task<bool> Logout();
-        Task<bool> Create(CreateCommandModel model, string email);
+        Task<bool> Create(CreateCommandModel model);
         Task<List<BloodSugarHistoryDTO>> GetBloodLogs(string email);
     }
 }

@@ -14,5 +14,6 @@ namespace BloodSugarLog.Models
         [Required]
         [Display(Name ="Blood Value")]
         public int BloodValue { get; set; }
+        public string Name { get; set; }
     }
 }

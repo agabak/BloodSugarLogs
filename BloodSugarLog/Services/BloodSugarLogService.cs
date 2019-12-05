@@ -69,9 +69,9 @@ namespace BloodSugarLog.Services
             return true;
         }
 
-        public async Task<bool> Create(CreateCommandModel model,string email)
+        public async Task<bool> Create(CreateCommandModel model)
         {
-            var   appUser = await _userManager.FindByEmailAsync(email);
+            var   appUser = await _userManager.FindByEmailAsync(model.Name);
             if(appUser == null)  return  false;
 
             var today = DateTime.Now;

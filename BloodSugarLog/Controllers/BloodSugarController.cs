@@ -28,7 +28,8 @@ namespace BloodSugarLog.Controllers
         {
             if(ModelState.IsValid)
             {
-              if(await _service.Create(model, User.Identity.Name)) return RedirectToAction("Index", "Home");
+              model.Name = User.Identity.Name;
+              if(await _service.Create(model)) return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("", "Something went wromg to create database");
