@@ -3,6 +3,7 @@ using BloodSugarLog.Models;
 using BloodSugarLog.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -16,11 +17,13 @@ namespace BloodSugarLog.Test.Controllers
          private readonly Mock<IBloodSugarLogService> _servicMock;
          private readonly  BloodSugarController _controller;
          private ClaimsPrincipal fakeUser;
+         private readonly Mock<ILogger<BloodSugarController>> _mockLogger;
 
         public BloodSugarController_Test()
         {
             _servicMock = new Mock<IBloodSugarLogService>();
-            _controller = new BloodSugarController(_servicMock.Object);
+            _mockLogger = new Mock<ILogger<BloodSugarController>>();
+            _controller = new BloodSugarController(_servicMock.Object, _mockLogger.Object);
              var context = new ControllerContext
                         {
                             HttpContext = new DefaultHttpContext
