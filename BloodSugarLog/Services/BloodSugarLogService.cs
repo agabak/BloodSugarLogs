@@ -90,7 +90,6 @@ namespace BloodSugarLog.Services
            var  foodInTake  = _context.FoodInTakes.Where(x => x.ApplicationUserId == userId.Id).ToList();
 
             var bloods = new List<BloodSugarHistoryDTO>();
-          
             foreach(var food in foodInTake)
             {
                 var blood = new BloodSugarHistoryDTO
@@ -106,3 +105,4 @@ namespace BloodSugarLog.Services
         }
     }
 }
+
