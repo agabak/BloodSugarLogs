@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodSugarLog.Migrations
 {
     [DbContext(typeof(BloodSugarDbContext))]
-    [Migration("20191204211656_updateTableAddString")]
-    partial class updateTableAddString
+    [Migration("20191204225729_InitialTable")]
+    partial class InitialTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,9 +84,7 @@ namespace BloodSugarLog.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<string>("MeasurementValue");
-
-                    b.Property<string>("UserId");
+                    b.Property<int>("MeasurementValue");
 
                     b.HasKey("Id");
 
@@ -104,8 +102,6 @@ namespace BloodSugarLog.Migrations
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Name");
-
-                    b.Property<string>("userId");
 
                     b.HasKey("Id");
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BloodSugarLog.Migrations
 {
-    public partial class updateTableAddString : Migration
+    public partial class InitialTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -102,9 +102,8 @@ namespace BloodSugarLog.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<string>(nullable: true),
-                    MeasurementValue = table.Column<string>(nullable: true),
-                    ApplicationUserId = table.Column<string>(nullable: true)
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    MeasurementValue = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,9 +122,8 @@ namespace BloodSugarLog.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    userId = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    ApplicationUserId = table.Column<string>(nullable: true)
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

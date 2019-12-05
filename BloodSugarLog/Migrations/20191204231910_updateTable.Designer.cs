@@ -4,14 +4,16 @@ using BloodSugarLog.DL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BloodSugarLog.Migrations
 {
     [DbContext(typeof(BloodSugarDbContext))]
-    partial class BloodSugarDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191204231910_updateTable")]
+    partial class updateTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,8 +104,6 @@ namespace BloodSugarLog.Migrations
                     b.Property<int>("BloodValue");
 
                     b.Property<string>("Name");
-
-                    b.Property<DateTime>("TakeTime");
 
                     b.HasKey("Id");
 

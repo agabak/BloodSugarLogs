@@ -19,10 +19,10 @@
         {
             <div class="col-md-4 mb-5">
                 <address>
-                    <strong></strong>
-                    <br>Food  @value.FoodName
-                    <br>Blood Value @value.Value
-                    <br>
+                    <strong> @if (value.DateToday.ToString() != "1/1/0001 12:00:00 AM") {<spa>@value.DateToday</spa> } </strong>
+                    <br>Food you eat  @value.FoodName
+                    <br>Blood sugar after you eat @value.Value 
+                    <br> @if(value.Value > 120) { <spa> Blood Sugar is High</spa> }
                 </address>
             </div>
         }

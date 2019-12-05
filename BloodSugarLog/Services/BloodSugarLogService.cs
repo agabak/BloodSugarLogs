@@ -74,38 +74,34 @@ namespace BloodSugarLog.Services
             var   appUser = await _userManager.FindByEmailAsync(email);
             if(appUser == null)  return  false;
 
-            var foodInTake = new FoodInTake { Name = model.FoodName, ApplicationUserId = appUser.Id};
-            var bloodValues = new BloodSugarMeasurement  { MeasurementValue = model.BloodValue, ApplicationUserId = appUser.Id}; 
+            var today = DateTime.Now;
+            var foodInTake = new FoodInTake { Name = model.FoodName, ApplicationUserId = appUser.Id, BloodValue = model.BloodValue, TakeTime = today };
 
-           await   _context.BloodSugarMeasurements.AddAsync(bloodValues);
            await   _context.FoodInTakes.AddAsync(foodInTake);
 
             var isCread = await _context.SaveChangesAsync();
-        
-            return true;
+            if (isCread > -1) return true; 
+            return false;
         }
 
         public async Task<List<BloodSugarHistoryDTO>> GetBloodLogs(string email)
         {
            var userId = await _userManager.FindByEmailAsync(email);
            var  foodInTake  = _context.FoodInTakes.Where(x => x.ApplicationUserId == userId.Id).ToList();
-           var  bloodValue = _context.BloodSugarMeasurements.Where(x => x.ApplicationUserId == userId.Id).ToList();
 
             var bloods = new List<BloodSugarHistoryDTO>();
-             var blood = new BloodSugarHistoryDTO();
+          
             foreach(var food in foodInTake)
             {
-                 blood.FoodName = food.Name;
-
+                var blood = new BloodSugarHistoryDTO
+                { FoodName = food.Name,
+                   Value = food.BloodValue,
+                   DateToday = food.TakeTime
+  
+                };
                 bloods.Add(blood);
             }
-
-            foreach(var val in bloodValue)
-            {
-                blood.Value = val.MeasurementValue;
-                bloods.Add(blood);
-            }
-
+           
             return bloods;
         }
     }

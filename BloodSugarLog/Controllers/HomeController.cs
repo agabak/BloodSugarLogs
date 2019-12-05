@@ -20,7 +20,9 @@ namespace BloodSugarLog.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (!this.User.Identity.IsAuthenticated) return RedirectToAction("Login", "Account");
             var bloodHistory = await _service.GetBloodLogs(this.User.Identity.Name);
+           
             return View(bloodHistory);
         }
     }

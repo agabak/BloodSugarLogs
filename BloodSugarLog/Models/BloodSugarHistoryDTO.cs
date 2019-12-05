@@ -9,5 +9,6 @@ namespace BloodSugarLog.Models
     {
         public string FoodName { get; set; }
         public int Value { get; set; }
+        public DateTime DateToday { get; set; }
     }
 }

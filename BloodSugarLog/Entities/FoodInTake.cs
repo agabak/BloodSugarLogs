@@ -9,6 +9,8 @@ namespace BloodSugarLog.Entities
     {
         public int Id { get; set; }
         public string ApplicationUserId { get; set; }
+        public int BloodValue { get; set; }
         public string Name { get; set; }
+        public DateTime TakeTime { get; set; }
     }
 }
